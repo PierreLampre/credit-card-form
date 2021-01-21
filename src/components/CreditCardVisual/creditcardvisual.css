@@ -1,0 +1,26 @@
+.credit-card-box{
+    height: 35vh;
+    min-height: 213px;
+    min-width: 350px;
+    max-width: 550px;
+    border-radius: 16px;
+    margin: 20px auto;
+    display: grid;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    justify-items: center;
+    background: red;
+}
+/* 
+.credit-card{
+    width: 70%;
+    height: 70%;
+    max-width: 500px;
+    min-height: 200px;
+    min-width: 300px;
+    background: black;
+    margin: 0 auto;
+    border-radius: 16px;
+    margin: 10px 16px;
+} */
