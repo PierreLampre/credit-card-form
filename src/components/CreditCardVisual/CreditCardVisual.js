@@ -1,14 +1,14 @@
 import React from 'react'
 import "./creditcardvisual.css"
 
-const CreditCardVisual = () => {
+const CreditCardVisual = (props) => {
     return (
         <div className="credit-card-box">
             <div className="some-bank">
                 <div className="some">SOME</div>
                 <div className="bank">BANK</div>
             </div>
-            <div className="ccNum">1111 4444 9999 6789</div>
+            <div className="ccNum">{props.strings.ccNum}</div>
             <div className="chip">
                 <div className="col col1">
                     <div className="row1"></div>
@@ -25,8 +25,8 @@ const CreditCardVisual = () => {
                 <div className="good">GOOD</div>
                 <div className="thru">THRU</div> 
             </div>
-            <div className="expiry">06/24</div>
-            <div className="name">JUSTIN M LAMPE</div>
+            <div className="expiry">{props.strings.expiry}</div>
+            <div className="name">{props.strings.name}</div>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 .credit-card-box{
     height: 35vh;
     min-height: 213px;
+    max-height: 236px;
     min-width: 350px;
     max-width: 550px;
     width: 95%;
@@ -98,8 +99,9 @@
 .some-bank {
     background: firebrick;
     grid-column: 6 / 8;
-    grid-row: 1 / 3;
+    grid-row: 1 / 4;
     display: grid;
+    min-height: 93px;
     align-items: center;
     justify-items: center;
     font-family: 'Racing Sans One', cursive;
@@ -107,13 +109,21 @@
     -webkit-text-stroke-width: .2px;
     text-shadow: 2px 2px #000;
     padding-bottom: 5px;
-    margin-right: -16px;
-    margin-bottom: -26px;
+}
+
+.bank {
+    margin-bottom: 15px;
 }
 
 .some {
-    margin-bottom: -35px;
+    margin-top: 10px;
 }
+
+@media screen and (min-width: 501px) {
+    .credit-card-box {
+        max-height: 317px;
+    }
+  }
 
 @media screen and (min-width: 768px) {
     .ccNum {
