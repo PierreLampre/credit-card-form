@@ -3,24 +3,126 @@
     min-height: 213px;
     min-width: 350px;
     max-width: 550px;
+    width: 95%;
     border-radius: 16px;
     margin: 20px auto;
     display: grid;
     align-self: center;
     justify-self: center;
+    background-color: dodgerblue;
+    background: linear-gradient(45deg,red, orangered, coral, khaki); 
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    color: black;
+    color: gainsboro;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    font-weight: 700;
+    border: 1px solid dimgray;
+}
+
+.ccNum {
+    grid-row: 5 / 7;
+    grid-column: 2 / 12;
+    font-size: 1.55em;
+    letter-spacing: 2px;
+}
+
+.good-thru {
+    font-size: 10px;
+    grid-row: 6 / 8;
+    grid-column: 3 / 4;
+    padding-top: 20px;
+    color: black;
+    -webkit-text-stroke-width: 0;
+}
+
+.expiry {
+    font-size: 1.3em;
+    grid-column: 4 / 6;
+    grid-row: 6 / 8;
+    padding-top: 19px;
+}
+
+.name {
+    font-size: 1.3em;
+    grid-column: 1 / 12;
+    grid-row: 8 / 8;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.chip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 30px;
+    width: 40px;
+    border-radius: 6px;
+    background: darkgoldenrod;
+    border: 1px solid dimgrey;
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    margin-left: 10px;
+}
+
+.col1, .col2 {
+    grid-row: 1 / 6;
+    display: grid;
+    grid-template-rows: 10% 33% 23% 33% 10%;
+    border-right: 1px solid dimgrey;
+}
+
+.col3 {
+    grid-row: 1 / 6;
+    display: grid;
+    grid-template-rows: 10% 33% 23% 33% 11%;  
+}
+
+.row1, .row4 {
+    grid-row: 3 / 4;
+    border-bottom: 1px solid dimgrey;
+    border-top: 1px solid dimgrey;
+}
+
+.row2 {
+    grid-row: 1 / 2;
+    border-bottom: 1px solid dimgrey;
+}
+
+.row3 {
+    grid-row: 5 / 6;
+    border-top: 1px solid dimgrey;
+    margin-top: -2.3px;
+}
+
+.some-bank {
+    background: firebrick;
+    grid-column: 6 / 8;
+    grid-row: 1 / 3;
+    display: grid;
     align-items: center;
     justify-items: center;
-    background: red;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 1.7em;
+    -webkit-text-stroke-width: .2px;
+    text-shadow: 2px 2px #000;
+    padding-bottom: 5px;
+    margin-right: -16px;
+    margin-bottom: -26px;
 }
-/* 
-.credit-card{
-    width: 70%;
-    height: 70%;
-    max-width: 500px;
-    min-height: 200px;
-    min-width: 300px;
-    background: black;
-    margin: 0 auto;
-    border-radius: 16px;
-    margin: 10px 16px;
-} */
+
+.some {
+    margin-bottom: -35px;
+}
+
+@media screen and (min-width: 768px) {
+    .ccNum {
+        font-size: 2em;
+    }
+  }
+  
+  @media screen and (min-width: 1100px) {
+    .ccNum {
+        font-size: 2.2em;
+    }
+  }

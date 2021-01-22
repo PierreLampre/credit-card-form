@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./creditcardform.css"
 
 const CreditCardForm = () => {
+    
+    const [strings, setStrings] = useState({ 
+        ccNum: "○○○○ ○○○○ ○○○○ ○○○○",
+        expiry: "--/--",
+        name: "CARDHOLDER NAME",
+        cvv: "---"
+    });
+
+    function changeStrings(e) {
+        setStrings({...strings, [e.target.name]: e.target.value});
+    }
+
     return (
             <form className="credit-card-form">
 
@@ -10,7 +22,8 @@ const CreditCardForm = () => {
                         <div className="row">
                             <label>CC Number</label>
                             <input 
-                                type="text" 
+                                type="text"
+                                name="ccNum" 
                                 className="input-big"
                                 required 
                             />
@@ -19,6 +32,7 @@ const CreditCardForm = () => {
                             <label>Expiration</label>
                             <input 
                                 type="text"
+                                name="expiry" 
                                 className="input-small" 
                                 required 
                             />
@@ -29,7 +43,8 @@ const CreditCardForm = () => {
                         <div className="row">
                              <label>Name On Card</label>
                             <input 
-                            type="text" 
+                            type="text"
+                            name="name"  
                             className="input-big"
                             required 
                         />
@@ -37,7 +52,8 @@ const CreditCardForm = () => {
                        <div className="row">
                            <label>CVV</label>
                             <input 
-                            type="text" 
+                            type="text"
+                            name="cvv"  
                             className="input-small"
                             required 
                         />

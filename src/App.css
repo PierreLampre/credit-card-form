@@ -9,4 +9,5 @@ body{
   font-family: 'Asap', sans-serif;
   display: grid;
   justify-items: center;
+  background: firebrick;
 }
