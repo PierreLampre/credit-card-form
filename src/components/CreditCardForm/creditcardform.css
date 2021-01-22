@@ -26,9 +26,13 @@
     width: 40%
 }
 
-label, .button-box {
+label {
     width: 90%;
     margin: 0 auto;
+}
+
+.button-box {
+    width: 90%;
 }
 
 .input-box {
@@ -50,6 +54,16 @@ input {
 .input-small{
     width: 80%;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+  }
 
 input:focus {
     outline: none;
