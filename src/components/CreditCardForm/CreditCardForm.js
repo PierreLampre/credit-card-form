@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import CreditCardVisual from "../CreditCardVisual/CreditCardVisual";
 import "./creditcardform.css";
+import mc from "./img/mastercard.svg"
+import ds from "./img/discover.svg"
 
 const CreditCardForm = () => {
 
@@ -11,6 +13,7 @@ const CreditCardForm = () => {
         cvv: "---"
     });
     const [disabled, setDisabled] = useState(true);
+    const [img, setImg] = useState("");
 
     let ccNum = document.getElementById("ccNum");
     let expiry = document.getElementById("expiry");
@@ -21,7 +24,12 @@ const CreditCardForm = () => {
     let info3 = document.getElementById("info3");
     let info4 = document.getElementById("info4");
 
-
+    const cards= {
+        visa: <img src='/static/media/visa.9ffefcfc.svg' className="cc-logo" alt='visa card logo' />,
+        mc: <img src="/static/media/mastercard.8b1d6346.svg" className="cc-logo" alt="mastercard logo" />,
+        ds: <img src="/static/media/discover.42e5cc04.svg" className="cc-logo" alt="discover card logo" />,
+        spacer: <div className="cc-logo" />
+    }
 
     function changeStrings(e) {
         setStrings({ ...strings, [e.target.name]: e.target.value });
@@ -42,10 +50,30 @@ const CreditCardForm = () => {
         setStrings({ ...strings, [e.target.name]: e.target.value.replace(/(\d{4})/g, '$1 ').replace(/(^\s+|\s+$)/,'')});
         
         let ccNum = document.getElementById("ccNum");
+        let slicedCCNum = ccNum.value.slice(0, 1);
 
+        console.log(slicedCCNum);
+        console.log(typeof slicedCCNum);
+        console.log(cards.visa);
+
+        if (slicedCCNum === "4") {
+            setImg(cards.visa);
+            console.log(img);
+        } else if (slicedCCNum === "5") {
+            setImg(cards.mc);
+        } else if (slicedCCNum === "3") {
+            setImg(cards.ds);
+        } else {
+            setImg(cards.spacer);
+        }
+
+        //enable buttons
         if(ccNum.value.length > 0) {
             setDisabled(false);
         } 
+
+        //toggle svgs for credit card view
+        
 
         //HTML5 validation ignores the maxlength property when type is number :(
         //The if statement provides desired maxlength limit when type="number"
@@ -112,7 +140,7 @@ const CreditCardForm = () => {
 
     return (
         <div className="ccForm">
-            <CreditCardVisual strings={strings}/>
+            <CreditCardVisual strings={strings} cardImg={img}/>
             <form className="credit-card-form">
 
                 <div className="inputs">

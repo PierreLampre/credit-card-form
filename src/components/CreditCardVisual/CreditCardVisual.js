@@ -27,6 +27,7 @@ const CreditCardVisual = (props) => {
             </div>
             <div className="expiry">{props.strings.expiry}</div>
             <div className="name">{props.strings.name}</div>
+            {props.cardImg ? props.cardImg : <div className="cc-logo" />}
         </div>
     )
 }
