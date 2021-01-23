@@ -66,7 +66,16 @@ const CreditCardForm = () => {
         el.placeholder = message;
     }
 
-
+    function resetAllInputStyles() {
+        resetInputStyles(ccNum, "Enter Your CC Number");
+        resetInputStyles(expiry, "MM/YY");
+        resetInputStyles(fullName, "Your Name");
+        resetInputStyles(cvv, "***");
+        info1.style.visibility = "hidden";
+        info2.style.visibility = "hidden";
+        info3.style.visibility = "hidden";
+        info4.style.visibility = "hidden";
+    }
     
     function clearInputs(e) {
         e.preventDefault();
@@ -82,6 +91,7 @@ const CreditCardForm = () => {
         expiry.value = "";
         fullName.value = "";
         cvv.value = "";
+        resetAllInputStyles();
     }
 
     function validateStrings(e) {
@@ -95,10 +105,7 @@ const CreditCardForm = () => {
         } else if(cvv.value.length < 3 || cvv.value.length > 5) {
             invalidInput(cvv, "info4")
         } else {
-            resetInputStyles(ccNum, "Enter Your CC Number");
-            resetInputStyles(expiry, "MM/YY");
-            resetInputStyles(fullName, "Your Name");
-            resetInputStyles(cvv, "***");
+            resetAllInputStyles();
             clearInputs(e);
         } 
     }
