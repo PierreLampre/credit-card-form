@@ -10,41 +10,97 @@ const CreditCardForm = () => {
         name: "CARDHOLDER NAME",
         cvv: "---"
     });
-
-    function changeStrings(e) {
-        setStrings({ ...strings, [e.target.name]: e.target.value });
-    }
+    const [disabled, setDisabled] = useState(true);
 
     let ccNum = document.getElementById("ccNum");
     let expiry = document.getElementById("expiry");
     let fullName = document.getElementById("fullName");
-    let cvv = document.getElementById("ccv");
+    let cvv = document.getElementById("cvv");
+    let info1 = document.getElementById("info1");
+    let info2 = document.getElementById("info2");
+    let info3 = document.getElementById("info3");
+    let info4 = document.getElementById("info4");
+
+
+
+    function changeStrings(e) {
+        setStrings({ ...strings, [e.target.name]: e.target.value });
+
+        if (e.target.value.length === 5 && e.target.name === "expiry"){
+            expiry.style.border = "1px solid black";
+            info2.style.visibility = "hidden";
+        } else if(e.target.value.length >= 1 && e.target.name === "name"){
+            fullName.style.border = "1px solid black";
+            info3.style.visibility = "hidden";
+        } else if(e.target.value.length >= 3 && e.target.name === "cvv"){
+            cvv.style.border = "1px solid black";
+            info4.style.visibility = "hidden";
+        }
+    }
 
     function changeStringsAddWhiteSpace(e) {
         setStrings({ ...strings, [e.target.name]: e.target.value.replace(/(\d{4})/g, '$1 ').replace(/(^\s+|\s+$)/,'')});
         
         let ccNum = document.getElementById("ccNum");
+
+        if(ccNum.value.length > 0) {
+            setDisabled(false);
+        } 
+
         //HTML5 validation ignores the maxlength property when type is number :(
         //The if statement provides desired maxlength limit when type="number"
         if (ccNum.value.length > 15) ccNum.value = ccNum.value.slice(0, 15);
-    }
-
-    function invalidInput(el, message) {
-        el.style.border = "4px solid red";
-        el.placeholder = message
-    }
-
-    function validateStrings(e, ccNum, expiry, fullName, cvv) {
-        e.preventDefault();
-        if(ccNum.value.length < 14) {
-            invalidInput(ccNum, "Credit card number entered is too short.");
-        } else if (expiry.value.length < 5){
-            invalidInput(expiry, "Format = MM/YY");
-        } else if(fullName.value.length < 2){
-            invalidInput(fullName, "Please Enter Full Name");
-        } else if(cvv.value.length < 3 || cvv.value.length > 5) {
-            invalidInput(cvv, "Invalid CCV")
+        if(ccNum.value.length >= 15) { 
+            ccNum.style.border = "1px solid black";
+            info1.style.visibility = "hidden";
         }
+    }
+
+    function invalidInput(el, id) {
+        el.style.border = "4px solid red";
+        document.getElementById(id).style.visibility = "visible";
+    }
+
+    function resetInputStyles(el, message){
+        el.style.border = "1px solid black";
+        el.placeholder = message;
+    }
+
+
+    
+    function clearInputs(e) {
+        e.preventDefault();
+        // reset state to initial
+        setStrings({
+            ccNum: "•••• •••• •••• ••••",
+            expiry: "--/--",
+            name: "CARDHOLDER NAME",
+            cvv: "---"
+        });
+        //clear form inputs
+        ccNum.value = "";
+        expiry.value = "";
+        fullName.value = "";
+        cvv.value = "";
+    }
+
+    function validateStrings(e) {
+        e.preventDefault();
+        if(ccNum.value.length < 14 || ccNum.value === null) {
+            invalidInput(ccNum, "info1");
+        } else if (expiry.value.length < 5){
+            invalidInput(expiry, "info2");
+        } else if(fullName.value.length < 2){
+            invalidInput(fullName, "info3");
+        } else if(cvv.value.length < 3 || cvv.value.length > 5) {
+            invalidInput(cvv, "info4")
+        } else {
+            resetInputStyles(ccNum, "Enter Your CC Number");
+            resetInputStyles(expiry, "MM/YY");
+            resetInputStyles(fullName, "Your Name");
+            resetInputStyles(cvv, "***");
+            clearInputs(e);
+        } 
     }
 
     return (
@@ -65,6 +121,7 @@ const CreditCardForm = () => {
                                 onChange={changeStringsAddWhiteSpace}
                                 required
                             />
+                            <div id="info1" className="info">Credit card number is too short</div>
                         </div>
                         <div className="row">
                             <label>Expiration</label>
@@ -77,6 +134,7 @@ const CreditCardForm = () => {
                                 onChange={changeStrings}
                                 required
                             />
+                            <div id="info2" className="info">Use this format: MM/YY</div>
                         </div>
 
                     </div>
@@ -92,17 +150,20 @@ const CreditCardForm = () => {
                                 onChange={changeStrings}
                                 required
                             />
+                            <div id="info3" className="info">Enter your name as it appears on your card</div>
                         </div>
                         <div className="row">
                             <label>CVV</label>
                             <input
                                 type="number"
                                 name="cvv"
-                                id="ccv"
+                                id="cvv"
                                 className="input-small"
                                 placeholder="***"
+                                onChange={changeStrings}
                                 required
                             />
+                            <div id="info4" className="info">CVV should be 3-4 digits</div>
                         </div>
 
                     </div>
@@ -111,17 +172,17 @@ const CreditCardForm = () => {
                     <div className="button-box">
                         <button 
                         id="submit"
-                        onClick={(e) => validateStrings(
-                            e,
-                            ccNum, 
-                            expiry,
-                            fullName,
-                            cvv
-                        )}
-                        >
+                        disabled={disabled}
+                        onClick={(e) => validateStrings(e)}>
                             Submit
                         </button>
-                        <button id="clear">Clear</button>
+                        <button 
+                        id="clear"
+                        disabled={disabled}
+                        onClick={(e) => clearInputs(e)}
+                        >
+                            Clear
+                        </button>
                     </div>
 
                 </div>

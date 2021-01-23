@@ -90,6 +90,14 @@ button:nth-of-type(1) {
     margin-right: 8px;
 }
 
+.info {
+    font-size: 11px;
+    color: red;
+}
+
+#info1, #info2, #info3, #info4{
+    visibility: hidden;
+}
 
 @media screen and (min-width: 768px) {
     .credit-card-form {
