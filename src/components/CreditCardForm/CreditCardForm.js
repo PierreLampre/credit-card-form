@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import CreditCardVisual from "../CreditCardVisual/CreditCardVisual";
 import "./creditcardform.css";
+import visa from "./img/visa.svg";
 import mc from "./img/mastercard.svg"
 import ds from "./img/discover.svg"
+
 
 const CreditCardForm = () => {
 
@@ -52,10 +54,6 @@ const CreditCardForm = () => {
         let ccNum = document.getElementById("ccNum");
         let slicedCCNum = ccNum.value.slice(0, 1);
 
-        console.log(slicedCCNum);
-        console.log(typeof slicedCCNum);
-        console.log(cards.visa);
-
         if (slicedCCNum === "4") {
             setImg(cards.visa);
             console.log(img);
@@ -103,6 +101,7 @@ const CreditCardForm = () => {
         info2.style.visibility = "hidden";
         info3.style.visibility = "hidden";
         info4.style.visibility = "hidden";
+        setImg("");
     }
     
     function clearInputs(e) {
@@ -164,6 +163,7 @@ const CreditCardForm = () => {
                                 type="text"
                                 name="expiry"
                                 id="expiry"
+                                maxLength="5"
                                 className="input-small"
                                 placeholder="MM/YY"
                                 onChange={changeStrings}
