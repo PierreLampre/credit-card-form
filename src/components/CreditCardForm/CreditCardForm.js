@@ -138,7 +138,7 @@ const CreditCardForm = () => {
     }
 
     return (
-        <div className="ccForm">
+        <div className="master-container">
             <CreditCardVisual strings={strings} cardImg={img}/>
             <form className="credit-card-form">
 

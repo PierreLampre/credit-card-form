@@ -149,4 +149,11 @@
         font-size: 2em;
     }
   }
-  
+
+  @media screen and (max-height: 575px) {
+
+    .credit-card-box {
+        margin-left: 20px;
+    }
+
+  }

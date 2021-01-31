@@ -114,3 +114,39 @@ button:nth-of-type(1) {
         width: 60vw;
     }
   }
+
+  @media screen and (max-height: 575px) {
+    .master-container {
+        display: grid;
+        grid-template-columns: 25% 10% 65%;
+    }
+
+    .credit-card-form{
+       width: 50vw;
+       grid-column: 3 / 4;
+       min-width: 450px;
+    }
+
+    .inputs {
+        width: 400px;
+    }
+
+    @media screen and (max-width: 890px) {
+
+    .master-container {
+        grid-template-columns: 25% 23% 48%;
+    }
+
+    
+    .credit-card-form{
+        min-width: 350px;
+        margin-right: 25px;
+     }
+ 
+     .inputs {
+         width: 300px;
+     }
+
+    }
+
+}
